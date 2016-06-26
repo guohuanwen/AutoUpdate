@@ -50,6 +50,8 @@ public class DialogActivity extends Activity implements View.OnClickListener {
 
         cancel.setOnClickListener(this);
         sure.setOnClickListener(this);
+
+        if(isForce) cancel.setVisibility(View.GONE);
     }
 
     private void initIntent() {
