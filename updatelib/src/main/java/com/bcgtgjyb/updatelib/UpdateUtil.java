@@ -86,17 +86,17 @@ public class UpdateUtil {
     private void update(Context context, UpdateInfo updateInfo) {
         this.updateInfo = updateInfo;
         Log.i(TAG, "update: ");
-        if (!updateInfo.needUpdate) {
+        if (!updateInfo.need_update) {
             return;
         }
 
         if (checkLocalApk(updateInfo.md5)) {
             //show install dialog
-            showInstanllDialog(context, updateInfo.isForce);
+            showInstanllDialog(context, updateInfo.is_force);
             return;
         }
         //show download dialog
-        showDownloadDialog(context, updateInfo.isForce);
+        showDownloadDialog(context, updateInfo.is_force);
     }
 
     private void showDownloadDialog(final Context context, boolean isForce) {
@@ -151,9 +151,9 @@ public class UpdateUtil {
     private UpdateInfo test() {
         UpdateInfo updateInfo = new UpdateInfo();
         updateInfo.apkUrl = "http://ddmyapp.kw.tc.qq.com/16891/9DF04CE7F7706D080E05E321A80234BB.apk?mkey=576d005f82ff575e&f=ae10&c=0&fsname=com.devuni.flashlight_10.0.6_20160624.apk&p=.apk";
-        updateInfo.isForce = true;
+        updateInfo.is_force = true;
         updateInfo.md5 = "9df04ce7f7706d080e05e321a80234bb";
-        updateInfo.needUpdate = true;
+        updateInfo.need_update = true;
         return updateInfo;
     }
 
@@ -262,7 +262,7 @@ public class UpdateUtil {
             long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
             if (downloadId == reference) {
                 //apk download finish,you can do something in this
-                showDownloadDialog(context, updateInfo.isForce);
+                showDownloadDialog(context, updateInfo.is_force);
             }
         }
     }

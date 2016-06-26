@@ -6,6 +6,6 @@ package com.bcgtgjyb.updatelib;
 public class UpdateInfo {
     public String apkUrl;
     public String md5;
-    public boolean needUpdate;
-    public boolean isForce;
+    public boolean need_update;
+    public boolean is_force;
 }
