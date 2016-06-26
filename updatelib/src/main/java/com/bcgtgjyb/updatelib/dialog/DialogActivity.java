@@ -13,7 +13,7 @@ import com.bcgtgjyb.updatelib.R;
 /**
  * Created by bigwen on 2016/6/26.
  */
-public abstract class DialogActivity extends Activity implements View.OnClickListener {
+public class DialogActivity extends Activity implements View.OnClickListener {
 
     private TextView title;
     private TextView content;
@@ -47,6 +47,9 @@ public abstract class DialogActivity extends Activity implements View.OnClickLis
         content.setText(contextText);
         cancel.setText(cancelText);
         sure.setText(sureText);
+
+        cancel.setOnClickListener(this);
+        sure.setOnClickListener(this);
     }
 
     private void initIntent() {
@@ -73,16 +76,18 @@ public abstract class DialogActivity extends Activity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v.getId() == cancel.getId()) {
-            if (!isForce) finish();
-            finish();
-            System.exit(0);
+            if (!isForce) {
+                finish();
+            }else {
+                //finish all activity then exit
+            }
             return;
         }
         if (v.getId() == sure.getId()) {
             if (callback != null) {
                 callback.onSure();
-                return;
             }
+            return;
         }
     }
 
@@ -90,10 +95,9 @@ public abstract class DialogActivity extends Activity implements View.OnClickLis
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isForce) {
-                return super.onKeyDown(keyCode, event);
-            } else {
-                finish();
                 return true;
+            } else {
+                return super.onKeyDown(keyCode, event);
             }
         }
         return super.onKeyDown(keyCode, event);

@@ -48,6 +48,7 @@ public class UpdateUtil {
     }
 
     public void checkUpdate(final Context context) {
+        Log.i(TAG, "checkUpdate: ");
         if (checkNetWork(context) == 0) {
             return;
         }
@@ -62,6 +63,9 @@ public class UpdateUtil {
 
             }
         });
+
+        //test
+        update(context, test());
     }
 
     public void registerReceiver(Context context) {
@@ -80,6 +84,8 @@ public class UpdateUtil {
     }
 
     private void update(Context context, UpdateInfo updateInfo) {
+        this.updateInfo = updateInfo;
+        Log.i(TAG, "update: ");
         if (!updateInfo.needUpdate) {
             return;
         }
@@ -94,6 +100,7 @@ public class UpdateUtil {
     }
 
     private void showDownloadDialog(final Context context, boolean isForce) {
+        Log.i(TAG, "showDownloadDialog: ");
         DialogUtil.showUpdateDialog(
                 context, "下载更新", "hello world", "取消", "确定",
                 isForce, new DialogActivity.Callback() {
@@ -110,6 +117,7 @@ public class UpdateUtil {
     }
 
     private void showInstanllDialog(final Context context, boolean isForce) {
+        Log.i(TAG, "showInstanllDialog: ");
         DialogUtil.showUpdateDialog(
                 context, "安装更新", "hello world", "取消", "确定",
                 isForce, new DialogActivity.Callback() {
@@ -126,10 +134,11 @@ public class UpdateUtil {
     }
 
     private void requestUpdate(Context context, final UpdateNet.Callback callback) {
+        Log.i(TAG, "requestUpdate: ");
         UpdateNet.requestUpdateInfo(context, new UpdateNet.Callback() {
             @Override
             public void onSuccess(UpdateInfo updateInfo) {
-                callback.onSuccess(test());
+                callback.onSuccess(updateInfo);
             }
 
             @Override
@@ -142,7 +151,7 @@ public class UpdateUtil {
     private UpdateInfo test() {
         UpdateInfo updateInfo = new UpdateInfo();
         updateInfo.apkUrl = "http://ddmyapp.kw.tc.qq.com/16891/9DF04CE7F7706D080E05E321A80234BB.apk?mkey=576d005f82ff575e&f=ae10&c=0&fsname=com.devuni.flashlight_10.0.6_20160624.apk&p=.apk";
-        updateInfo.isForce = false;
+        updateInfo.isForce = true;
         updateInfo.md5 = "9df04ce7f7706d080e05e321a80234bb";
         updateInfo.needUpdate = true;
         return updateInfo;
@@ -176,6 +185,9 @@ public class UpdateUtil {
     private int checkNetWork(Context context) {
         ConnectivityManager mConnectivityManager =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (mConnectivityManager == null){
+            return 0;
+        }
         NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
         if (mNetworkInfo != null && !mNetworkInfo.isAvailable()) {
             //network is not avalilable
@@ -234,6 +246,7 @@ public class UpdateUtil {
      * @return downloadId ->only one,
      */
     private long download(String fileUrl, String path, Context context) {
+        Log.i(TAG, "download: ");
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(fileUrl));
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
