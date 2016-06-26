@@ -5,7 +5,7 @@ android auto update/安卓自动更新模块
 {  
 "url":"http://....",  
 "md5":"qagi13njidn...",  
-"needUpdate":"ture",  
+"need_update":"ture",  
 "is_force":"false"  
 }  
 you can add other param  
