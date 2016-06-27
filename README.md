@@ -15,7 +15,8 @@ android auto update/安卓自动更新模块
   
 2.现在的dialog很简陋，你可以自己设计 [DialogActivity](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/dialog/DialogActivity.java)
    
-3.此时代码中的UpdateInfo是本地写的测试数据，在[UpdateUtil](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/UpdateUtil.java)中的有如下方法    
+3.此时代码中的UpdateInfo是本地写的测试数据，在[UpdateUtil](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/UpdateUtil.java)中的有如下方法  
+
 ```java
    private UpdateInfo test() {
       UpdateInfo updateInfo = new UpdateInfo();
@@ -40,6 +41,7 @@ android auto update/安卓自动更新模块
    "need_update":"ture",  
    "is_force":"false"  
 }   
+```
 you can add other param,and analyze json data in [UpdateNet](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/UpdateNet.java),change [UpdateInfo](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/UpdateInfo.java)
   
 2.the dialog is simple,you can design [DialogActivity](https://github.com/guohuanwen/AutoUpdate/blob/master/updatelib/src/main/java/com/bcgtgjyb/updatelib/dialog/DialogActivity.java)  
