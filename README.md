@@ -1,7 +1,7 @@
 # AutoUpdate
 android auto update/安卓自动更新模块  
    
-  
+#中
 1.服务器配置json参数
 ```json
 {  
@@ -32,7 +32,7 @@ android auto update/安卓自动更新模块
   
   
   
-  
+#English
 1.your server should set up the json  
 ```json
 {  
